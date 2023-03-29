@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <style>
+        body {
+            background-image: url("https://static.vecteezy.com/system/resources/thumbnails/008/070/315/small/geometric-low-poly-graphic-repeat-pattern-background-free-vector.jpg");
+            margin: 0%;
+        }
+
+        .container {
+            opacity: 0.9;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            background-color: rgb(10, 20, 0);
+            width: 60%;
+            margin-left: 20%;
+            margin-top: 0px;
+        }
+
+        .title {
+            line-height: 10vh;
+            font-size: 200%;
+            color: white;
+            text-align: center;
+            font-weight: bold;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            padding: 5px;
+        }
+
+        .menulijn {
+            padding-top: 1.5vh;
+            height: 3vh;
+            text-align: center;
+            width: 100%;
+            background-color: rgb(34, 40, 40);
+            flex: 0;
+        }
+
+
+
+        .middenstuk {
+
+            background-color: rgb(88, 168, 182);
+            border-color: black;
+            border: solid;
+            border-radius: 3px;
+            padding: 0px;
+            overflow: auto;
+            flex: 1;
+        }
+
+
+        .onderkant {
+            text-align: right;
+            background-color: rgb(0, 0, 0);
+            padding: 7px;
+            color: white;
+        }
+
+        .open {
+            flex: 1;
+            transition: 0.6s;
+
+        }
+
+        .close {
+            flex: 0;
+            overflow: hidden;
+            transition: 0.6s;
+
+        }
+
+        .popupContent {
+            background-color: rgb(255, 255, 255);
+            height: 175px;  
+            width: 250px;
+            position: fixed;
+            z-index: 10;
+            left: 50%;
+            top: 50%;
+            padding: 0px;
+            transform: translate(-50%, -50%);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            text-align: center;
+            transition: left 0, 8;
+
+        }
+
+        .backgroundpop {
+            display: none;
+            background-color: rgba(46, 52, 59, 0.6);
+            height: 100%;
+            width: 100%;
+            top: 0;
+            left: 0;
+            position: fixed;
+            z-index: 2;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .backgroundpop.open {
+            display: block;
+            
+        }
+        .popupblue{
+            background-color: rgb(107, 184, 184)
+        }
+        .popupred{
+            background-color: rgb(172, 52, 52)
+        }
+    </style>
+
+    <title> opd1</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <div class="title">title</div>
+
+        <div class="menulijn">
+           
+            <button  onclick="login()"> Inloggen </button>
+            <button  onclick="contact()">contact</button>
+            
+        </div>
+        <div class="middenstuk" style="display: flex">
+            <div class="ctrlbar"></div>
+            <aside id="asideleft" style="background-color: grey;" class="open"></aside>
+            <div id="leftcollapse" style="background-color: rgb(107, 95, 95);" onclick="klikMij()">&harr; </div>
+                    <section style="flex:1;">
+                        Vol<br> Vol<br> Vol<br> Vol<br> Vol<br> Vol<br> Vol<br> Vol<br> Vol<br> Vol<br> Vol<br> Vol<br>
+                        Vol<br> Vol<br> Vol<br> Vol<br> Vol<br> Vol<br> Vol<br> Vol<br>
+                    </section>
+                    <aside id="asideright" style="background-color:grey ;" class="open"></aside>
+                    <div id="asideright" style="background-color: grey;" onclick="klikMij()"></div>
+            </div>
+            <div class="onderkant">footer</div>
+        </div>
+        <script>
+            function klikMij() {
+                if (document.getElementById("asideleft").className == "open") {
+                    document.getElementById("asideleft").className = "close";
+                    document.getElementById("asideright").className = "close"
+                   
+                } else {
+                    document.getElementById("asideleft").className = "open";
+                    document.getElementById("asideright").className = "open";
+                    
+                }
+            }
+            function showPopup(popupObject) {
+                let popup = document.getElementById("popup");
+                let content = popup.getElementsByClassName('popupMessage')[0];
+                let title = popup.getElementsByClassName('popupTitle')[0];
+                title.innerHTML = popupObject.title;
+                title.className = `popupTitle ${popupObject.class}`;
+                content.innerHTML = popupObject.message;
+                popup.className = "backgroundpop open"
+            }
+            function showLogin() {
+                let popup = document.getElementById("formpopup");
+                popup.className = "backgroundpop open"
+            }
+            function hideLogin() {
+                let popup = document.getElementById("formpopup");
+                popup.className = "backgroundpop";
+            }
+            function hidePopup() {
+                let popup = document.getElementById("popup");
+                popup.className = "backgroundpop";
+            }
+            function contact() {
+                showPopup({
+                    title: 'Contact',
+                    message: 'contact us via 0612212321',
+                    class: 'popupred'
+                });
+
+            }
+            function login() {
+                showLogin();
+            }
+            
+
+
+
+        </script>
+        <div class="backgroundpop" id="popup">
+            <div class="popupContent">
+                <div class="popupTitle">Inloggen</div>
+                <button style="position: absolute; bottom: 10px; right: 10px" onclick="hidePopup()">x</button>
+            </div>
+                <div class="popupMessage">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    Vivamus libero leo, pellentesque
+                    ornare, adipiscing vitae, rhoncus commodo, nulla. Fusce quis ipsum. Nulla neque massa, feugiat sed,
+                    commodo
+                    in, adipiscing ut, est. In fermentum mattis ligula. Nulla ipsum. Vestibulum condimentum condimentum
+                    augue.
+                    Nunc purus risus, volutpat sagittis, lobortis at, dignissim sed, sapien. Fusce porttitor iaculis
+                    ante.
+                    Curabitur eu arcu. Morbi quam purus, tempor eget, ullamcorper feugiat, commodo ullamcorper, neque.
+                </div>
+                
+        </div>
+        <div class="backgroundpop" id="formpopup">
+            <div class="popupContent">
+                <div class="popupTitle popupblue">Inloggen</div>
+                <div class="popupBody">
+                <form action="login.php" method="post">
+                <input type="text" name="username" placeholder="Username"><br>
+                <input type="password" name="password" placeholder="Password"><br>
+                <button type="submit">Submit</button>
+                </form>
+                </div>
+                    
+                <button style="position: absolute; bottom: 10px; right: 10px" onclick="hideLogin()">x</button>
+            </div>
+        </div>
+</body>
+
+</html>
